@@ -1,28 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Counter/>
+    <Setting/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Counter from './components/Counter'
+import Setting from './components/Setting'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Counter,
+    Setting
+  },
+  mounted () {
+    let lastVisit = this.$store.getters.getLastTime
+    if (lastVisit != null) {
+      let i = this.$moment().diff(lastVisit, 'second')
+      this.$toasted.info(`Welcome Back! You have away for ${i} seconds`)
+    }
+
+    this.$store.dispatch('updateLastTime')
+  },
+  computed: {
+    toggle: function () {
+      return this.$store.getters['getToggle']
+    }
+  },
+  watch: {
+    toggle: function () {
+      this.openNoteModal()
+    }
+  },
+  methods: {
+    openNoteModal () {
+      this.$modal.show('noteModal')
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+html {
+  height: 100%;
+  background-color: black;
+  font-family: Roboto,Helvetica,Arial,sans-serif;
 }
 </style>
