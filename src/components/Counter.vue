@@ -65,19 +65,15 @@ export default {
 
 <style scoped>
   #counter {
-    align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100px;
-    overflow: auto;
-    margin: auto;
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top:  50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
   #content {
-    margin: 0 0 0 0;
     text-align: center;
     color: white;
-    font-size: 6vw;
+    font-size: 9.5vw;
   }
 </style>
