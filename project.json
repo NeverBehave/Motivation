@@ -1,0 +1,83 @@
+{
+	"contentrating" : "Everyone",
+	"description" : "Countdown that terrifyingly shows your age\nInspired by Project https://github.com/soffes/Motivation",
+	"file" : "index.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"day" : 
+			{
+				"editable": true,
+				"fraction" : false,
+				"max" : 30,
+				"min" : 1,
+				"order" : 102,
+				"text" : "Day",
+				"type" : "slider",
+				"value" : null
+			},
+			"level" : 
+			{
+				"options" : 
+				[
+					{
+						"label" : "Light",
+						"value" : "Light"
+					},
+					{
+						"label" : "Moderate",
+						"value" : "Moderate"
+					},
+					{
+						"label" : "Terrifying",
+						"value" : "Terrifying"
+					},
+					{
+						"label" : "WTF?",
+						"value" : "WTF?"
+					}
+				],
+				"order" : 103,
+				"text" : "level",
+				"type" : "combo",
+				"value" : "Moderate"
+			},
+			"month" : 
+			{
+				"editable": true,
+				"fraction" : false,
+				"max" : 12,
+				"min" : 1,
+				"order" : 101,
+				"text" : "Month",
+				"type" : "slider",
+				"value" : null
+			},
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"year" : 
+			{
+				"editable": true,
+				"fraction" : false,
+				"max" : 9999,
+				"min" : 999,
+				"order" : 100,
+				"text" : "year",
+				"type" : "slider",
+				"value" : null
+			}
+		}
+	},
+	"preview" : "preview.jpg",
+	"tags" : [ "Relaxing" ],
+	"title" : "Motivation",
+	"type" : "web",
+	"visibility" : "public",
+	"workshopid" : "1683433667"
+}
