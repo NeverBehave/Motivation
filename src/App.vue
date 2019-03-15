@@ -19,7 +19,7 @@ export default {
     let lastVisit = this.$store.getters.getLastTime
     if (lastVisit != null) {
       let i = this.$moment().diff(lastVisit, 'second')
-      this.$toasted.info(`Welcome Back! You have away for ${i} seconds`)
+      this.$toasted.info(`Welcome Back! You have been away for ${i} seconds`)
     }
 
     this.$store.dispatch('updateLastTime')

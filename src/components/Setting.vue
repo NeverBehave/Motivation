@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     pad (d) {
-      return (d < 10) ? '0' + d.toString() : d.toString()
+      return d.padStart(2, '0')
     },
     beforeOpen () {
       if (this.time != null) {
