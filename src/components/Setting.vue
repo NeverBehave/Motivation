@@ -78,7 +78,7 @@ export default {
     beforeOpen () {
       if (this.time != null) {
         this.year = this.time.year()
-        this.month = this.time.month()
+        this.month = this.time.month() + 1 // 0 - 11, as API said
         this.day = this.time.date()
       }
     },

@@ -49,7 +49,7 @@ export default {
       }
     },
     start () {
-      this.interval = setInterval(this.filterLevel, 33)
+      this.interval = setInterval(this.filterLevel, 33) // 1/30 second
     },
     clicked () {
       this.$store.dispatch('toggleModal')
