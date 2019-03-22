@@ -14,7 +14,7 @@
       <div class="pure-u-1-3">
         <form class="pure-form pure-form-stacked">
           <fieldset class="pure-group">
-            <label for="year"  class="pure-input-1 color">CountDown Date</label>
+            <label for="year"  class="pure-input-1 color">Date (Like birthday)</label>
             <input id="year" class="pure-input-1" v-model="year" type="number" placeholder="Year">
             <input v-model="month" class="pure-input-1" type="number" placeholder="Month">
             <input v-model="day"  class="pure-input-1" type="number" placeholder="Day">
@@ -36,7 +36,7 @@
         </form>
       </div>
       <div class="pure-u-1-3 color">
-        <p>Enter your birthday and see how time flies</p>
+        <p>Enter a date and see how time flies</p>
         <p><strong>No data will leave your browser</strong></p>
         <p>Motivated by <a href="https://github.com/soffes/Motivation">Motivation</a></p>
       </div>
@@ -92,6 +92,11 @@ export default {
 
         this.$toasted.info('Set Successfully!')
       })
+
+      this.close()
+    },
+    close () {
+      this.$modal.hide('noteModal')
     }
   }
 }
