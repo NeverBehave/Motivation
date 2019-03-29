@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    level: 'Moderate',
+    level: 'moderate',
     last_time: '',
     date: '',
     toggle: false

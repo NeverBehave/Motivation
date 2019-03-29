@@ -19,7 +19,7 @@ export default {
     let lastVisit = this.$store.getters.getLastTime
     if (lastVisit != null) {
       let i = this.$moment().diff(lastVisit, 'second')
-      this.$toasted.info(`Welcome Back! You have been away for ${i} seconds`)
+      this.$toasted.info(this.$t('toasted.welcome_back', { sec: i }))
     }
 
     this.$store.dispatch('updateLastTime')
@@ -43,9 +43,11 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.loli.net/css?family=VT323');
+
 html {
   height: 100%;
   background-color: black;
-  font-family: Roboto,Helvetica,Arial,sans-serif;
+  font-family: 'VT323', monospace !important;
 }
 </style>

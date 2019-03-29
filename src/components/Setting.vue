@@ -7,38 +7,35 @@
     <div class="pure-g">
       <ViewOnGithub/>
       <div class="pure-u-1-3"></div>
-      <div class="pure-u-1-3"><h2 class="title">Motivation</h2></div>
+      <div class="pure-u-1-3"><h2 class="title">{{ $t('title.motivation') }}</h2></div>
       <div class="pure-u-1-3"></div>
     </div>
     <div class="pure-g">
       <div class="pure-u-1-3">
         <form class="pure-form pure-form-stacked">
           <fieldset class="pure-group">
-            <label for="year"  class="pure-input-1 color">Date (Like birthday)</label>
-            <input id="year" class="pure-input-1" v-model="year" type="number" placeholder="Year">
-            <input v-model="month" class="pure-input-1" type="number" placeholder="Month">
-            <input v-model="day"  class="pure-input-1" type="number" placeholder="Day">
-            <button type="button" @click="update" class="pure-button">Confirm</button>
+            <label for="year"  class="pure-input-1 color">{{ $t('title.date') }}</label>
+            <input id="year" class="pure-input-1" v-model="year" type="number" :placeholder="$t('placeholder.year')">
+            <input v-model="month" class="pure-input-1" type="number" :placeholder="$t('placeholder.month')">
+            <input v-model="day"  class="pure-input-1" type="number" :placeholder="$t('placeholder.day')">
+            <button type="button" @click="update" class="pure-button">{{ $t('button.confirm') }}</button>
           </fieldset>
         </form>
       </div>
       <div class="pure-u-1-3">
         <form class="pure-form pure-form-stacked">
           <fieldset class="pure-group">
-              <label class="color" for="level">Level</label>
+              <label class="color" for="level">{{ $t('title.level') }}</label>
               <select id="level" v-model="level" class="pure-input-1">
-                <option>Light</option>
-                <option>Moderate</option>
-                <option>Terrifying</option>
-                <option>WTF?</option>
+                <option :value="`light`">{{ $t('level.light') }}</option>
+                <option :value="`moderate`">{{ $t('level.moderate') }}</option>
+                <option :value="`terrifying`">{{ $t('level.terrifying') }}</option>
+                <option :value="`wtf`">{{ $t('level.wtf') }}</option>
               </select>
           </fieldset>
         </form>
       </div>
-      <div class="pure-u-1-3 color">
-        <p>Enter a date and see how time flies</p>
-        <p><strong>No data will leave your browser</strong></p>
-        <p>Motivated by <a href="https://github.com/soffes/Motivation">Motivation</a></p>
+      <div class="pure-u-1-3 color" v-html="$t('message.readme')">
       </div>
     </div>
   </vue-modal>
@@ -86,14 +83,13 @@ export default {
       let str = this.year + '-' + this.pad(this.month) + '-' + this.pad(this.day)
       this.$store.dispatch('updateTime', str).then((r) => {
         if (!r) {
-          this.$toasted.error('Date invalid!')
+          this.$toasted.error(this.$t('toasted.date_invaild'))
           return
         }
 
-        this.$toasted.info('Set Successfully!')
+        this.$toasted.info(this.$t('toasted.set_date'))
+        this.close()
       })
-
-      this.close()
     },
     close () {
       this.$modal.hide('noteModal')

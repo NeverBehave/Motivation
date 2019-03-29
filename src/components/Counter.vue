@@ -10,7 +10,7 @@ export default {
   name: 'CountDown',
   data () {
     return {
-      string: 'Click to Set Time',
+      string: this.$t('message.default'),
       interval: null
     }
   },
@@ -34,18 +34,18 @@ export default {
       // Light 7 digits
       let n = this.$moment().diff(this.fromDate, 'year', true)
       switch (this.$store.getters.getLevel) {
-        case 'Terrifying':
+        case 'terrifying':
           this.string = n.toFixed(9)
           return
-        case 'Moderate':
+        case 'moderate':
           this.string = n.toFixed(8)
           return
-        case 'Light':
+        case 'light':
           this.string = n.toFixed(7)
           return
-        case 'WTF?':
+        case 'wtf':
         default:
-          this.string = n
+          this.string = n.toFixed(15)
       }
     },
     start () {
@@ -75,6 +75,6 @@ export default {
   #content {
     text-align: center;
     color: white;
-    font-size: 9.5vw;
+    font-size: 12vw;
   }
 </style>
