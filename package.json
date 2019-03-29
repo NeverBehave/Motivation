@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "moment": "^2.24.0",
+    "offline-plugin": "^5.0.6",
     "purecss": "^1.0.0",
     "vue": "^2.6.6",
     "vue-i18n": "^8.10.0",

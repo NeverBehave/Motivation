@@ -8,6 +8,8 @@ import Toasted from 'vue-toasted'
 import moment from 'moment'
 import VueI18n from 'vue-i18n'
 
+import * as OfflinePluginRuntime from 'offline-plugin/runtime'
+
 import lang from './i18n'
 
 Vue.config.productionTip = false
@@ -20,6 +22,8 @@ Vue.use(Toasted, {
 })
 Vue.use(Purecss)
 Vue.use(VueI18n)
+
+OfflinePluginRuntime.install()
 
 export const i18n = new VueI18n({
   locale: (() => {
