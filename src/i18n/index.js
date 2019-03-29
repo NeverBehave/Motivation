@@ -3,6 +3,5 @@ import cn from './cn'
 
 export default {
   en: en,
-  cn: cn,
-  'zh-cn': cn
+  cn: cn
 }
