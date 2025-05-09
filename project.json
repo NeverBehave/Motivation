@@ -1,11 +1,33 @@
 {
 	"contentrating" : "Everyone",
-	"description" : "Countdown that terrifyingly shows your age\nInspired by Project https://github.com/soffes/Motivation",
+	"description" : "Countdown that terrifyingly shows your age",
 	"file" : "index.html",
 	"general" : 
 	{
 		"properties" : 
 		{
+			"year" : 
+			{
+				"editable": true,
+				"fraction" : false,
+				"max" : 99999,
+				"min" : 0,
+				"order" : 100,
+				"text" : "Year",
+				"type" : "slider",
+				"value" : 1970
+			},
+			"month" : 
+			{
+				"editable": true,
+				"fraction" : false,
+				"max" : 12,
+				"min" : 1,
+				"order" : 101,
+				"text" : "Month",
+				"type" : "slider",
+				"value" : 1
+			},
 			"day" : 
 			{
 				"editable": true,
@@ -15,7 +37,7 @@
 				"order" : 102,
 				"text" : "Day",
 				"type" : "slider",
-				"value" : null
+				"value" : 1
 			},
 			"level" : 
 			{
@@ -43,34 +65,52 @@
 				"type" : "combo",
 				"value" : "Moderate"
 			},
-			"month" : 
+			"granularity": 
 			{
-				"editable": true,
-				"fraction" : false,
-				"max" : 12,
-				"min" : 1,
-				"order" : 101,
-				"text" : "Month",
-				"type" : "slider",
-				"value" : null
+				"options" : 
+				[
+					{
+						"label" : "By year",
+						"value" : "year"
+					},
+					{
+						"label" : "By Month",
+						"value" : "month"
+					},
+					{
+						"label" : "By Day",
+						"value" : "day"
+					}
+				],
+				"order" : 104,
+				"text" : "granularity",
+				"type" : "combo",
+				"value" : "year"
+			},
+			"font": 
+			{
+				"options" : 
+				[
+					{
+						"label" : "Default",
+						"value" : "default"
+					},
+					{
+						"label" : "Terminal",
+						"value" : "terminal"
+					}
+				],
+				"order" : 105,
+				"text" : "font",
+				"type" : "combo",
+				"value" : "default"
 			},
 			"schemecolor" : 
 			{
-				"order" : 0,
+				"order" : 110,
 				"text" : "ui_browse_properties_scheme_color",
 				"type" : "color",
 				"value" : "0 0 0"
-			},
-			"year" : 
-			{
-				"editable": true,
-				"fraction" : false,
-				"max" : 9999,
-				"min" : 999,
-				"order" : 100,
-				"text" : "year",
-				"type" : "slider",
-				"value" : null
 			}
 		}
 	},

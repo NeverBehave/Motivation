@@ -1,10 +1,13 @@
 
 // Initial general data that may be changed by the user
 let generalData = {
-    year: null,
-    month: null,
-    day: null,
-    level: 'Moderate'
+    year: 1970,
+    month: 1,
+    day: 1,
+    level: 'Moderate',
+    granularity: 'year',
+    font: 'default', // defined in html font
+    fps: 30
 }
 
 let storage = {
@@ -12,14 +15,51 @@ let storage = {
     interval: null,
 }
 
+function fps2Interval(fps) {
+    return Math.floor(1000 / fps)
+}
+
 function generateDateString(year, month, day) {
     return year.toString() + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0')
 }
 
-function start() {
-    if (storage.interval === null) {
-        storage.interval = setInterval(run, 33) // 1/30 second
+function updateString (str) {
+    document.getElementById('content').innerText = str
+}
+
+function updateStyle(font) {
+    let style = '';
+    switch(font) {
+        case 'terminal':
+            style = "font-family: 'VT323', monospace !important;"
+            break
     }
+
+    document.getElementById('content').style = style
+}
+
+function generateConfig() {
+    const dateString = generateDateString(generalData.year, generalData.month, generalData.day)
+    updateStyle(generalData.font)
+    const m = dayjs(dateString)
+    if (m.isValid()) {
+        storage.dateObj = m
+        return true
+    }
+
+    return false
+}
+
+function start() {
+    const isValid = generateConfig()
+    if (!isValid) {
+        updateString("Missing date or date is invalid.")
+        return
+    }
+
+    // main loop
+    const func = () => updateString(filterLevel(storage.dateObj))
+    storage.interval = setInterval(func, fps2Interval(generalData.fps))
 }
 
 function stop () {
@@ -29,10 +69,9 @@ function stop () {
     }
 }
 
-function run() {
-    if (storage.dateObj !== null) {
-        updateString(filterLevel(storage.dateObj))
-    }
+function restart() {
+    stop()
+    start()
 }
 
 function filterLevel (fromDate) {
@@ -40,7 +79,7 @@ function filterLevel (fromDate) {
     // Terrifying 9 digits
     // Moderate 8 digits
     // Light 7 digits
-    let n = moment().diff(fromDate, 'year', true)
+    let n = dayjs().diff(fromDate, generalData.granularity, true)
     switch (generalData.level) {
         case 'Terrifying':
             return n.toFixed(9)
@@ -54,37 +93,38 @@ function filterLevel (fromDate) {
     }
 }
 
-function updateString (str) {
-    document.getElementById('content').innerText = str
-}
-
 // A global object that can listen to property changes
 window.wallpaperPropertyListener = {
     applyUserProperties: function(properties) {
-        if (properties.year && properties.month && properties.day) {
-            let m = moment(generateDateString(properties.year.value, properties.month.value, properties.day.value))
-            if (m.isValid()) {
-                storage.dateObj = m
+        // document: not all properties will appear on each update, so do it on demand
+        Object.keys(generalData).forEach(e => {
+            if (properties[e]) {
+                generalData[e] = properties[e].value
             }
+        })
+
+        restart()
+    },
+    applyGeneralProperties: function(properties) {
+        if (properties.fps) {
+            generalData.fps = properties.fps;
         }
 
-        if (properties.level) {
-            generalData.level = properties.level.value
-        }
+        restart()
     },
     setPaused: function(isPaused) {
         if (isPaused) {
-            // Actually, time should not be paused :)
+            // Actually, time could not be paused :)
             // Never Stop the beat
             // But we can kindly pause for you
             stop()
         } else {
-           start()
+           restart()
         }
     }
 };
 
 window.onload = function() {
     // Entry Code
-    start()
+    restart()
 };

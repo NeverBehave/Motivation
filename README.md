@@ -1,7 +1,7 @@
-# Motivation WallPaper Engine Edition
+# Motivation --- WallPaper Engine Edition
+
+https://steamcommunity.com/sharedfiles/filedetails/?id=1683433667
 
 ![](preview.gif)
 
 输入生日，看时间流逝
-
-Inspired by Project(Also Macos ScreenSaver): https://github.com/soffes/Motivation
